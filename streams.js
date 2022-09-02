@@ -15,6 +15,7 @@ readable.on('data', (chunk) => {
 const writableByPipe = fs.createWriteStream('./copybypipe.txt');
 readable.pipe(writableByPipe);
 
+const compressed = fs.createWriteStream('./lorem.txt.gz');
 const gzip = zlib.createGzip();
-const compressed = fs.createWriteStream('./loremgz.txt');
+
 readable.pipe(gzip).pipe(compressed);
