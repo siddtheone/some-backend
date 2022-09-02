@@ -1,5 +1,5 @@
 const fs = require('fs');
-const zlib = require('zlib');
+const { createGzip } = require('node:zlib');
 
 const readable = fs.createReadStream('./lorem.txt', {
   encoding: 'utf8',
@@ -16,6 +16,6 @@ const writableByPipe = fs.createWriteStream('./copybypipe.txt');
 readable.pipe(writableByPipe);
 
 const compressed = fs.createWriteStream('./lorem.txt.gz');
-const gzip = zlib.createGzip();
+const gzip = createGzip();
 
 readable.pipe(gzip).pipe(compressed);
