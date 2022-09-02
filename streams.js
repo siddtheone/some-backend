@@ -8,7 +8,9 @@ const readable = fs.createReadStream('./lorem.txt', {
 
 const writable = fs.createWriteStream('./loremcopy.txt');
 
-readable.on('data', (c) => writable.write(c));
+readable.on('data', (chunk) => {
+  writable.write(chunk);
+});
 
 const writableByPipe = fs.createWriteStream('./copybypipe.txt');
 readable.pipe(writableByPipe);
