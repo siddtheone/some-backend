@@ -8,10 +8,10 @@ http
     // res.end(); //end the response
 
     res.writeHead(200, {
-      'Content-Type': 'text/html',
+      'Content-Type': 'application/json',
     });
 
-    const html = fs.readFileSync('./index.html');
-    res.end(html.toString().replace('#'));
+    // fs.createReadStream('./index.html').pipe(res);
+    res.end(JSON.stringify({ name: 'Lorem' }));
   })
   .listen(4567); //the server object listens on port 8080
