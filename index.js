@@ -9,14 +9,15 @@ http
 
     if (req.url === '/') {
       fs.createReadStream('./index.html').pipe(res);
-    }
-
-    if (req.url === '/api') {
+    } else if (req.url === '/api') {
       res.writeHead(200, {
         'Content-Type': 'application/json',
       });
 
       res.end(JSON.stringify({ name: 'Lorem' }));
+    } else {
+      res.writeHead(404);
+      res.end();
     }
   })
   .listen(4567); //the server object listens on port 8080
