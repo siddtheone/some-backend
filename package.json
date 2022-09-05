@@ -6,5 +6,8 @@
   "scripts": {},
   "devDependencies": {
     "@types/node": "^17.0.21"
+  },
+  "dependencies": {
+    "moment": "^2.29.4"
   }
 }
