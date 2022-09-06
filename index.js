@@ -43,12 +43,7 @@ app.get('/api', (req, res) => {
 });
 
 app.get('/person/:id', (req, res) => {
-  res.render('./person', { ID: req.params.id });
-});
-
-app.use((req, res, next) => {
-  console.log('some __');
-  next();
+  res.render('./person', { ID: req.params.id, Qstr: req.query.qstr });
 });
 
 app.listen(process.env.PORT || 3000);
