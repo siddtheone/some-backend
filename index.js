@@ -36,3 +36,7 @@ app.get('/api', (req, res) => {
 app.get('/person/:id', (res, req) => {
   res.json({ person: req.param.id });
 });
+
+app.use('/assets', express.static('./public'));
+
+app.listen(process.env.PORT || 3000);
