@@ -39,4 +39,9 @@ app.get('/person/:id', (res, req) => {
 
 app.use('/assets', express.static('./public'));
 
+app.use('/', (req, res, next) => {
+  console.log('some request');
+  next();
+});
+
 app.listen(process.env.PORT || 3000);
