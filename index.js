@@ -25,22 +25,29 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello</h1>');
+app.use('/assets', express.static('./public'));
+
+app.set('view engine', 'ejs');
+
+app.use('/', (req, res, next) => {
+  console.log('some request');
+  next();
+});
+
+app.get('/', (req, res, next) => {
+  res.render('./index');
 });
 
 app.get('/api', (req, res) => {
   res.json({ name: 'John' });
 });
 
-app.get('/person/:id', (res, req) => {
-  res.json({ person: req.param.id });
+app.get('/person/:id', (req, res) => {
+  res.render('./person', { ID: req.params.id });
 });
 
-app.use('/assets', express.static('./public'));
-
-app.use('/', (req, res, next) => {
-  console.log('some request');
+app.use((req, res, next) => {
+  console.log('some __');
   next();
 });
 
