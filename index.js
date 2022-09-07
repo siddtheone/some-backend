@@ -37,12 +37,8 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.get('/', (req, res, next) => {
+app.get('/', (req, res => {
   res.render('./index');
-});
-
-app.get('/api', (req, res) => {
-  res.json({ name: 'John' });
 });
 
 app.get('/person/:id', (req, res) => {
