@@ -24,9 +24,8 @@
 
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
+const apiController = require('./controllers/apiController');
+const htmlController = require('./controllers/htmlController');
 
 app.use('/assets', express.static('./public'));
 
@@ -37,17 +36,7 @@ app.use('/', (req, res, next) => {
   next();
 });
 
-app.get('/', (req, res => {
-  res.render('./index');
-});
-
-app.get('/person/:id', (req, res) => {
-  res.render('./person', { ID: req.params.id, Qstr: req.query.qstr });
-});
-
-app.post('/person', urlencodedParser, (req, res) => {
-  res.send('Thank you');
-  console.log(req.body.firstname, req.body.lastname);
-});
+apiController(app);
+htmlController(app);
 
 app.listen(process.env.PORT || 3000);
