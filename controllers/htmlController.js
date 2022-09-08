@@ -3,7 +3,16 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 module.exports = function (app) {
   app.get('/', (req, res) => {
-    res.render('./index');
+    res.render('./index', {
+      people: [
+        {
+          name: 'One',
+        },
+        {
+          name: 'Two',
+        },
+      ],
+    });
   });
 
   app.post('/person', urlencodedParser, (req, res) => {
